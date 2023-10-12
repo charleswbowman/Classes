@@ -5,8 +5,7 @@
 %the s domain
 %h - the sample interval
 %iomega - adjusts the gain
-%casuality - default is semi-casual( n = m). You input what you want for (n - m), 
-% assuming a positive value.
+%casuality - default is semi-casual(n = m). You input what you want for (n - m), 
 
 %Outputs: 
 %Dz_num = the numerator of the corresponding z transform
@@ -70,6 +69,8 @@ k2 = sqrt(yyy) / sqrt(xxx)
 %this relates the s domain and z domain gains
 k = k1 / k2
 syms z 
+%Here we subtract z by the c and d array, in order to set it up for the
+%prod function
 FF = z-d
 DD = z-c
 %Final outputs

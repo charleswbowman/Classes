@@ -5,7 +5,7 @@
 %the s domain
 %h - the sample interval
 %iomega - adjusts the gain
-%casuality - default is semi-casual. You input what you want for (n - m), 
+%casuality - default is semi-casual( n = m). You input what you want for (n - m), 
 % assuming a positive value.
 
 %Outputs: 
@@ -61,8 +61,8 @@ end
    
 
 %Here we plugging in exp^iomega*h for z, to solve for the gain
-y2 = d + exp(iomega*h)
-x2 = c + exp(iomega*h)
+y2 = -d + exp(iomega*h)
+x2 = -c + exp(iomega*h)
 yyy = prod(y2).^2 
 xxx = prod(x2).^2
 k2 = sqrt(yyy) / sqrt(xxx)
@@ -70,10 +70,12 @@ k2 = sqrt(yyy) / sqrt(xxx)
 %this relates the s domain and z domain gains
 k = k1 / k2
 syms z 
+%Here we subtract z by the c and d array, in order to set it up for the
+%prod function
 FF = z-d
 DD = z-c
 %Final outputs
-Dz_num = prod(FF)
+Dz_num = k * prod(FF)
 
 DZ_den = prod(DD)
 end
